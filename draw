@@ -1,0 +1,55 @@
+package com.example.myapplication;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.View;
+
+public class MyDraw extends View {
+    public MyDraw(Context context) {
+        super(context);
+    }
+
+    public void onDraw(Canvas c){
+        super.onDraw(c);
+        Path path = new Path();
+
+        Paint p = new Paint();
+        p.setAntiAlias(true);
+        p.setStrokeWidth(2);
+        p.setStyle(Paint.Style.FILL_AND_STROKE);
+        p.setColor(Color.parseColor("#8B4513"));
+
+        c.rotate(90);
+        c.drawRect(180, 180,360, 360, p);
+        c.rotate(270);
+
+        p.setColor(Color.parseColor("#006400"));
+        c.drawRect(0, 400,500, 500, p);
+        p.setColor(Color.parseColor("#FFFF00"));
+        c.drawCircle(40, 40,40, p);
+        int x = 200;
+        int y = 150;
+
+        for(int i = 0; i<7;i++){
+            path.moveTo(40,40);
+            path.lineTo(x, y);
+            path.close();
+            c.drawPath(path, p);
+            x -= 10;
+            y += 20;
+        }
+        p.setColor(Color.parseColor("#8B4513"));
+        c.drawRect(40,400,140,300,  p);
+        p.setColor(Color.parseColor("#000000"));
+        c.drawRect(90, 400, 120, 330, p);
+        c.drawRect(50, 360, 80, 330, p);
+        c.drawCircle(90,270,15, p);
+        p.setColor(Color.parseColor("#8B4513"));
+
+    }
+
+
+}
